@@ -10,6 +10,23 @@ in automated penetration testing. It includes:
 - real-experiment preparation and live-lab execution scripts,
 - paper artifacts (figures, tables, and IEEE-style manuscript source).
 
+* Paper at a Glance
+
+** Key contributions
+- Dead-loop diagnosis and reward-level fix for value-based agents (DQN/DDQN).
+- Generalization benchmark on unseen networks (X/Y/Z) with few-shot adaptation.
+- Unified comparison across RL families (Q-Learning, DQN/DDQN, PPO, A2C/A3C-like, DPPO-like, GAIL-like) plus reproducible real-experiment logging assets.
+
+** Where to read the paper source
+- Manuscript: `paper_overleaf/main.tex`
+- References: `paper_overleaf/references.bib`
+
+** Main result artifacts
+- Main simulation comparison: `results_compare_complex_simulation.csv`
+- Transfer benchmark (X/Y/Z): `results_transfer_xyz.csv`
+- Generalization + adaptation: `results_generalization_adaptation.csv`
+- Real experiment run history: `real_experiments/results/experiment_summary.md`
+
 * Repository Highlights
 
 ** Core simulation and RL training
