@@ -1,0 +1,118 @@
+{
+  "experiment_name": "real_experiments_network_alpha",
+  "description": "DMZ to internal to crown-jewel path with one Linux and one Windows branch.",
+  "attacker": {
+    "entry_subnet": "dmz",
+    "starting_visibility": [
+      "dmz"
+    ]
+  },
+  "subnets": [
+    {
+      "id": "dmz",
+      "cidr": "10.20.0.0/24"
+    },
+    {
+      "id": "internal",
+      "cidr": "10.20.1.0/24"
+    },
+    {
+      "id": "core",
+      "cidr": "10.20.2.0/24"
+    }
+  ],
+  "hosts": [
+    {
+      "id": "web01",
+      "ip": "10.20.0.10",
+      "role": "dmz-web",
+      "os": "ubuntu-20.04",
+      "services": [
+        "ssh",
+        "http"
+      ],
+      "vulnerabilities": [
+        "family_1",
+        "family_3"
+      ]
+    },
+    {
+      "id": "jump01",
+      "ip": "10.20.0.20",
+      "role": "dmz-jump",
+      "os": "windows-2019",
+      "services": [
+        "rdp",
+        "winrm"
+      ],
+      "vulnerabilities": [
+        "family_0"
+      ]
+    },
+    {
+      "id": "app01",
+      "ip": "10.20.1.10",
+      "role": "internal-app",
+      "os": "ubuntu-22.04",
+      "services": [
+        "ssh",
+        "http"
+      ],
+      "vulnerabilities": [
+        "family_2"
+      ]
+    },
+    {
+      "id": "db01",
+      "ip": "10.20.1.20",
+      "role": "internal-db",
+      "os": "windows-2016",
+      "services": [
+        "mssql"
+      ],
+      "vulnerabilities": [
+        "family_1"
+      ]
+    },
+    {
+      "id": "files01",
+      "ip": "10.20.2.10",
+      "role": "core-files",
+      "os": "windows-2019",
+      "services": [
+        "smb"
+      ],
+      "vulnerabilities": [
+        "family_0"
+      ]
+    },
+    {
+      "id": "crown01",
+      "ip": "10.20.2.20",
+      "role": "crown-jewel",
+      "os": "ubuntu-22.04",
+      "services": [
+        "ssh"
+      ],
+      "vulnerabilities": [
+        "family_3"
+      ]
+    }
+  ],
+  "reachability_rules": [
+    {
+      "from_subnet": "dmz",
+      "to_subnet": "internal",
+      "condition": "compromise_any(dmz)"
+    },
+    {
+      "from_subnet": "internal",
+      "to_subnet": "core",
+      "condition": "compromise_any(internal)"
+    }
+  ],
+  "goal": {
+    "target_host": "crown01",
+    "objective": "obtain_session"
+  }
+}

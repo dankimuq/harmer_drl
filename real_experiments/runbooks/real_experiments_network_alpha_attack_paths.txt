@@ -1,0 +1,3 @@
+# Placeholder attack paths for later live execution
+# goal=crown01
+[]

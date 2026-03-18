@@ -1,0 +1,102 @@
+{
+  "experiment_name": "real_experiments_network_alpha",
+  "network_key": "alpha",
+  "mode": "live",
+  "started_at": "2026-03-18T06:32:18.502962+00:00",
+  "finished_at": "2026-03-18T06:32:27.781587+00:00",
+  "target_host": "crown01",
+  "lab_target_ip": "10.5.0.10",
+  "targets": [
+    "10.20.0.10",
+    "10.20.0.20",
+    "10.20.1.10",
+    "10.20.1.20",
+    "10.20.2.10",
+    "10.20.2.20"
+  ],
+  "runbook_scope": {
+    "attacker_entry_subnet": "dmz",
+    "goal": {
+      "target_host": "crown01",
+      "objective": "obtain_session"
+    }
+  },
+  "exploit_chain": [
+    "unix/misc/distcc_exec",
+    "unix/ftp/vsftpd_234_backdoor"
+  ],
+  "stages": [
+    {
+      "experiment_name": "real_experiments_network_alpha",
+      "target_host": "crown01",
+      "execution_stage": "preflight",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "Config and runbook validated",
+      "timestamp": "2026-03-18T06:32:18.502962+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_alpha",
+      "target_host": "crown01",
+      "execution_stage": "docker_connect",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "MSF RPC port 55552 is open",
+      "timestamp": "2026-03-18T06:32:18.503909+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_alpha",
+      "target_host": "crown01",
+      "execution_stage": "metasploit_rpc",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "Connected to Metasploit 6.4.0-dev",
+      "timestamp": "2026-03-18T06:32:18.531499+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_alpha",
+      "target_host": "crown01",
+      "execution_stage": "service_fingerprinting",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "TCP portscan ports=21,22,3632,445,80 against 10.5.0.10: job 8",
+      "timestamp": "2026-03-18T06:32:18.551860+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_alpha",
+      "target_host": "crown01",
+      "execution_stage": "exploit_execution",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "[primary] unix/misc/distcc_exec rport=3632 launched, job=9",
+      "timestamp": "2026-03-18T06:32:23.727687+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_alpha",
+      "target_host": "crown01",
+      "execution_stage": "payload_delivery",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "cmd/unix/interact payload delivered with exploit module",
+      "timestamp": "2026-03-18T06:32:24.745038+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_alpha",
+      "target_host": "crown01",
+      "execution_stage": "session_acquisition",
+      "status": "ok",
+      "session_opened": "true",
+      "notes": "Session 2 opened on 10.5.0.10",
+      "timestamp": "2026-03-18T06:32:24.751187+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_alpha",
+      "target_host": "crown01",
+      "execution_stage": "lateral_movement",
+      "status": "ok",
+      "session_opened": "true",
+      "notes": "Shell confirmed: ",
+      "timestamp": "2026-03-18T06:32:27.774740+00:00"
+    }
+  ]
+}

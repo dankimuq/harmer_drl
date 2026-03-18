@@ -1,0 +1,22 @@
+# Python cache and environments
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# OS/editor
+.DS_Store
+.vscode/
+
+# Build/test artifacts
+.pytest_cache/
+.mypy_cache/
+
+# Training logs and checkpoints (generated)
+*_tensorboard/
+**/events.out.tfevents.*
+
+# Optional local outputs
+*.log

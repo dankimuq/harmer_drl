@@ -1,0 +1,7 @@
+flowchart LR
+    A[Attacker] --> D1[DMZ: web01]
+    A --> D2[DMZ: jump01]
+    D1 --> I1[Internal: app01]
+    D2 --> I2[Internal: db01]
+    I1 --> C1[Core: files01]
+    I2 --> C2[Core: crown01]

@@ -1,0 +1,8 @@
+flowchart LR
+    A[Attacker] --> P1[DMZ: portal01]
+    A --> D1[DMZ: decoy01]
+    P1 --> B1[Branch-A: brancha01]
+    P1 --> B2[Branch-B: branchb01]
+    B1 --> H1[Core: hub01]
+    B2 --> H1
+    H1 --> C1[Core: crown04]

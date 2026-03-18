@@ -1,0 +1,31 @@
+network,agent,sr,mr,std,ms
+Network X,Q-Learning,0.0,-330.0,0.0,nan
+Network X,PPO,0.0,-330.0,0.0,nan
+Network X,A2C,0.0,-330.0,0.0,nan
+Network X,DQN (orig),0.0,-330.0,0.0,nan
+Network X,DDQN (orig),0.0,-330.0,0.0,nan
+Network X,DQN (fixed),0.0,-330.0,0.0,nan
+Network X,DDQN (fixed),0.0,-330.0,0.0,nan
+Network X,DDPG,0.0,-330.0,0.0,nan
+Network X,A3C-like/SB3,0.0,-330.0,0.0,nan
+Network X,A3C (PyTorch async),0.0,-330.0,0.0,nan
+Network Y,Q-Learning,0.0,-330.0,0.0,nan
+Network Y,PPO,0.0,-330.0,0.0,nan
+Network Y,A2C,0.0,-330.0,0.0,nan
+Network Y,DQN (orig),0.0,-330.0,0.0,nan
+Network Y,DDQN (orig),0.0,-330.0,0.0,nan
+Network Y,DQN (fixed),0.0,-330.0,0.0,nan
+Network Y,DDQN (fixed),0.0,-330.0,0.0,nan
+Network Y,DDPG,0.0,-330.0,0.0,nan
+Network Y,A3C-like/SB3,0.0,-330.0,0.0,nan
+Network Y,A3C (PyTorch async),0.0,-330.0,0.0,nan
+Network Z,Q-Learning,0.0,-330.0,0.0,nan
+Network Z,PPO,0.0,-330.0,0.0,nan
+Network Z,A2C,0.0,-330.0,0.0,nan
+Network Z,DQN (orig),0.0,-330.0,0.0,nan
+Network Z,DDQN (orig),0.0,-330.0,0.0,nan
+Network Z,DQN (fixed),0.0,-330.0,0.0,nan
+Network Z,DDQN (fixed),0.0,-330.0,0.0,nan
+Network Z,DDPG,0.0,-330.0,0.0,nan
+Network Z,A3C-like/SB3,0.0,-330.0,0.0,nan
+Network Z,A3C (PyTorch async),0.0,-330.0,0.0,nan

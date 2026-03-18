@@ -1,0 +1,17 @@
+metasploit:
+  # the token to access metasploit database
+  token: ec7a4ece068e7a47d5a9dd4814510653da70e4070d81d5f689c6e7bfe456ee2ba950f6c55d8fa74c
+
+  # the directory to store metasploit resource script
+  remote-dir: /home/ubuntu/resource-scripts
+  host: localhost
+  is-remote: false
+  # if no response after timeout when launching an attack, consider this attack failed
+  attack-timeout: 1
+  # target-config file path
+  target-config: target-config.json
+  # authentication config for metasploit rpc
+  rpc:
+    username: msf
+    password: test
+    port: 55552

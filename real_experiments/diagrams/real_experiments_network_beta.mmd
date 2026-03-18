@@ -1,0 +1,7 @@
+flowchart LR
+    A[Attacker] --> E1[DMZ: edge01]
+    A --> G1[DMZ Gate: gate01]
+    G1 --> I1[Internal: erp01]
+    G1 --> I2[Internal: ops01]
+    I2 --> C1[Core: backup01]
+    I2 --> C2[Core: crown02]

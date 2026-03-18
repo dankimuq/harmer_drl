@@ -1,0 +1,119 @@
+{
+  "experiment_name": "real_experiments_network_gamma",
+  "description": "Dual-control internal zone where two hosts must be compromised before core access.",
+  "attacker": {
+    "entry_subnet": "dmz",
+    "starting_visibility": [
+      "dmz"
+    ]
+  },
+  "subnets": [
+    {
+      "id": "dmz",
+      "cidr": "10.40.0.0/24"
+    },
+    {
+      "id": "internal",
+      "cidr": "10.40.1.0/24"
+    },
+    {
+      "id": "core",
+      "cidr": "10.40.2.0/24"
+    }
+  ],
+  "hosts": [
+    {
+      "id": "proxy01",
+      "ip": "10.40.0.10",
+      "role": "proxy",
+      "os": "ubuntu-20.04",
+      "services": [
+        "http",
+        "ssh"
+      ],
+      "vulnerabilities": [
+        "family_0"
+      ]
+    },
+    {
+      "id": "mail01",
+      "ip": "10.40.0.20",
+      "role": "mail",
+      "os": "windows-2019",
+      "services": [
+        "smtp",
+        "winrm"
+      ],
+      "vulnerabilities": [
+        "family_3"
+      ]
+    },
+    {
+      "id": "auth01",
+      "ip": "10.40.1.10",
+      "role": "auth",
+      "os": "windows-2016",
+      "services": [
+        "ldap",
+        "kerberos"
+      ],
+      "vulnerabilities": [
+        "family_1"
+      ]
+    },
+    {
+      "id": "ci01",
+      "ip": "10.40.1.20",
+      "role": "ci-server",
+      "os": "ubuntu-22.04",
+      "services": [
+        "ssh",
+        "http"
+      ],
+      "vulnerabilities": [
+        "family_2"
+      ]
+    },
+    {
+      "id": "finance01",
+      "ip": "10.40.2.10",
+      "role": "finance",
+      "os": "windows-2019",
+      "services": [
+        "smb",
+        "mssql"
+      ],
+      "vulnerabilities": [
+        "family_0"
+      ]
+    },
+    {
+      "id": "crown03",
+      "ip": "10.40.2.20",
+      "role": "crown-jewel",
+      "os": "ubuntu-22.04",
+      "services": [
+        "ssh"
+      ],
+      "vulnerabilities": [
+        "family_2"
+      ]
+    }
+  ],
+  "reachability_rules": [
+    {
+      "from_subnet": "dmz",
+      "to_subnet": "internal",
+      "condition": "compromise_host(proxy01)"
+    },
+    {
+      "from_subnet": "internal",
+      "to_subnet": "core",
+      "condition": "compromise_all([auth01, ci01])"
+    }
+  ],
+  "goal": {
+    "target_host": "crown03",
+    "objective": "obtain_session"
+  }
+}

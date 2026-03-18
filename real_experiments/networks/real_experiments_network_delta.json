@@ -1,0 +1,128 @@
+{
+  "experiment_name": "real_experiments_network_delta",
+  "description": "Hub-and-spoke style network with a decoy service in the DMZ and a database crown jewel.",
+  "attacker": {
+    "entry_subnet": "dmz",
+    "starting_visibility": [
+      "dmz"
+    ]
+  },
+  "subnets": [
+    {
+      "id": "dmz",
+      "cidr": "10.50.0.0/24"
+    },
+    {
+      "id": "branch-a",
+      "cidr": "10.50.1.0/24"
+    },
+    {
+      "id": "branch-b",
+      "cidr": "10.50.2.0/24"
+    },
+    {
+      "id": "core",
+      "cidr": "10.50.3.0/24"
+    }
+  ],
+  "hosts": [
+    {
+      "id": "portal01",
+      "ip": "10.50.0.10",
+      "role": "public-portal",
+      "os": "ubuntu-20.04",
+      "services": [
+        "http"
+      ],
+      "vulnerabilities": [
+        "family_1"
+      ]
+    },
+    {
+      "id": "decoy01",
+      "ip": "10.50.0.30",
+      "role": "decoy",
+      "os": "ubuntu-20.04",
+      "services": [
+        "http"
+      ],
+      "vulnerabilities": []
+    },
+    {
+      "id": "brancha01",
+      "ip": "10.50.1.10",
+      "role": "branch-a-app",
+      "os": "windows-2019",
+      "services": [
+        "winrm",
+        "http"
+      ],
+      "vulnerabilities": [
+        "family_0"
+      ]
+    },
+    {
+      "id": "branchb01",
+      "ip": "10.50.2.10",
+      "role": "branch-b-app",
+      "os": "ubuntu-22.04",
+      "services": [
+        "ssh"
+      ],
+      "vulnerabilities": [
+        "family_3"
+      ]
+    },
+    {
+      "id": "hub01",
+      "ip": "10.50.3.10",
+      "role": "hub-control",
+      "os": "windows-2016",
+      "services": [
+        "rdp",
+        "smb"
+      ],
+      "vulnerabilities": [
+        "family_2"
+      ]
+    },
+    {
+      "id": "crown04",
+      "ip": "10.50.3.20",
+      "role": "crown-jewel-db",
+      "os": "windows-2019",
+      "services": [
+        "mssql"
+      ],
+      "vulnerabilities": [
+        "family_1"
+      ]
+    }
+  ],
+  "reachability_rules": [
+    {
+      "from_subnet": "dmz",
+      "to_subnet": "branch-a",
+      "condition": "compromise_host(portal01)"
+    },
+    {
+      "from_subnet": "dmz",
+      "to_subnet": "branch-b",
+      "condition": "compromise_host(portal01)"
+    },
+    {
+      "from_subnet": "branch-a",
+      "to_subnet": "core",
+      "condition": "compromise_any(branch-a)"
+    },
+    {
+      "from_subnet": "branch-b",
+      "to_subnet": "core",
+      "condition": "compromise_any(branch-b)"
+    }
+  ],
+  "goal": {
+    "target_host": "crown04",
+    "objective": "obtain_session"
+  }
+}

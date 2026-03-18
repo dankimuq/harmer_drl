@@ -1,0 +1,9 @@
+flowchart LR
+    A[Attacker] --> P1[DMZ: proxy01]
+    A --> M1[DMZ: mail01]
+    P1 --> I1[Internal: auth01]
+    P1 --> I2[Internal: ci01]
+    I1 --> G{Need auth01 and ci01}
+    I2 --> G
+    G --> C1[Core: finance01]
+    G --> C2[Core: crown03]

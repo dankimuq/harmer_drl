@@ -1,0 +1,12 @@
+name,sr,mr,std,ms
+Random (baseline),63.33333333333333,15.316666666666666,140.96834652581487,38.1578947368421
+Deterministic HARMer (sequential),100.0,201.0,0.0,22.0
+Q-Learning,100.0,247.0,0.0,6.0
+PPO,100.0,247.0,0.0,6.0
+DQN,0.0,114.0,0.0,nan
+"DDQN (Double DQN, 128×128)",0.0,98.0,0.0,nan
+A2C,100.0,247.0,0.0,6.0
+DDPG (continuous argmax wrapper),0.0,-62.0,0.0,nan
+A3C-like (A2C surrogate),100.0,218.5,0.0,3.0
+DPPO-like (vectorized PPO surrogate),100.0,218.5,0.0,3.0
+GAIL-like (adversarial imitation),0.0,-79.0,0.0,nan

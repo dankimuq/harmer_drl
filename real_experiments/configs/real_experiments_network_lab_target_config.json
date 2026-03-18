@@ -1,0 +1,12 @@
+{
+  "approach": "real_experiment::real_experiments_network_lab",
+  "targets": [
+    "10.5.0.10"
+  ],
+  "path-file": "real_experiments/runbooks/real_experiments_network_lab_runbook.json",
+  "metadata": {
+    "goal_host": "target_vuln_1",
+    "goal_objective": "obtain_session",
+    "description": "Docker lab: single Metasploitable2 target at 10.5.0.10 via MSF RPC at 127.0.0.1:55552."
+  }
+}

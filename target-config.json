@@ -1,0 +1,6 @@
+{
+    "approach":"attack-shortest-path-subnetc",
+
+    "targets":[],
+    "path-file":"attack-paths-demo/local-demo.txt"
+}

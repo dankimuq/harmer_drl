@@ -1,0 +1,117 @@
+{
+  "experiment_name": "real_experiments_network_beta",
+  "description": "Key-node pivot network where only one DMZ jump host opens the internal subnet.",
+  "attacker": {
+    "entry_subnet": "dmz",
+    "starting_visibility": [
+      "dmz"
+    ]
+  },
+  "subnets": [
+    {
+      "id": "dmz",
+      "cidr": "10.30.0.0/24"
+    },
+    {
+      "id": "internal",
+      "cidr": "10.30.1.0/24"
+    },
+    {
+      "id": "core",
+      "cidr": "10.30.2.0/24"
+    }
+  ],
+  "hosts": [
+    {
+      "id": "edge01",
+      "ip": "10.30.0.10",
+      "role": "edge-web",
+      "os": "ubuntu-20.04",
+      "services": [
+        "http"
+      ],
+      "vulnerabilities": [
+        "family_2"
+      ]
+    },
+    {
+      "id": "gate01",
+      "ip": "10.30.0.20",
+      "role": "pivot-gateway",
+      "os": "windows-2019",
+      "services": [
+        "rdp",
+        "winrm"
+      ],
+      "vulnerabilities": [
+        "family_1"
+      ]
+    },
+    {
+      "id": "erp01",
+      "ip": "10.30.1.10",
+      "role": "erp",
+      "os": "windows-2016",
+      "services": [
+        "http",
+        "mssql"
+      ],
+      "vulnerabilities": [
+        "family_0"
+      ]
+    },
+    {
+      "id": "ops01",
+      "ip": "10.30.1.20",
+      "role": "ops",
+      "os": "ubuntu-22.04",
+      "services": [
+        "ssh"
+      ],
+      "vulnerabilities": [
+        "family_3"
+      ]
+    },
+    {
+      "id": "backup01",
+      "ip": "10.30.2.10",
+      "role": "backup",
+      "os": "ubuntu-22.04",
+      "services": [
+        "ssh",
+        "nfs"
+      ],
+      "vulnerabilities": [
+        "family_1"
+      ]
+    },
+    {
+      "id": "crown02",
+      "ip": "10.30.2.20",
+      "role": "crown-jewel",
+      "os": "windows-2019",
+      "services": [
+        "smb"
+      ],
+      "vulnerabilities": [
+        "family_2"
+      ]
+    }
+  ],
+  "reachability_rules": [
+    {
+      "from_subnet": "dmz",
+      "to_subnet": "internal",
+      "condition": "compromise_host(gate01)"
+    },
+    {
+      "from_subnet": "internal",
+      "to_subnet": "core",
+      "condition": "compromise_host(ops01)"
+    }
+  ],
+  "goal": {
+    "target_host": "crown02",
+    "objective": "obtain_session"
+  }
+}

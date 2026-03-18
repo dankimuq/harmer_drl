@@ -1,0 +1,17 @@
+{
+  "approach": "real_experiment::real_experiments_network_delta",
+  "targets": [
+    "10.50.0.10",
+    "10.50.0.30",
+    "10.50.1.10",
+    "10.50.2.10",
+    "10.50.3.10",
+    "10.50.3.20"
+  ],
+  "path-file": "real_experiments/runbooks/real_experiments_network_delta_attack_paths.txt",
+  "metadata": {
+    "goal_host": "crown04",
+    "goal_objective": "obtain_session",
+    "description": "Hub-and-spoke style network with a decoy service in the DMZ and a database crown jewel."
+  }
+}

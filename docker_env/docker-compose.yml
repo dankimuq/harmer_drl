@@ -1,0 +1,35 @@
+services:
+  msf:
+    image: metasploitframework/metasploit-framework:latest
+    container_name: harmer_RL_msf_rpc
+    ports:
+      - "55552:55552" # MSF RPC
+      - "4444:4444"   # Meterpreter reverse shell
+    command: >
+      ./msfrpcd -U msf -P test -S -f -p 55552 -a 0.0.0.0
+    networks:
+      harmer_RL_pentest_net:
+        ipv4_address: 10.5.0.5
+
+  target_1:
+    image: tleemcjr/metasploitable2
+    platform: linux/amd64
+    container_name: harmer_RL_target_vuln_1
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    ports:
+      - "2121:21" # FTP
+      - "2222:22" # SSH
+      - "8080:80" # HTTP
+    networks:
+      harmer_RL_pentest_net:
+        ipv4_address: 10.5.0.10
+
+networks:
+  harmer_RL_pentest_net:
+    name: harmer_RL_pentest_net
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/24

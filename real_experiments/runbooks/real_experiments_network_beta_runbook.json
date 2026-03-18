@@ -1,0 +1,120 @@
+{
+  "experiment_name": "real_experiments_network_beta",
+  "scope": {
+    "attacker_entry_subnet": "dmz",
+    "goal": {
+      "target_host": "crown02",
+      "objective": "obtain_session"
+    }
+  },
+  "ordered_preparation_steps": [
+    "Confirm Docker lab topology exists and hosts are reachable from the attacker container.",
+    "Validate Metasploit RPC connectivity and workspace creation.",
+    "Run safe service fingerprinting only within approved scope.",
+    "Map discovered services to capability families or custom exploit backends.",
+    "Execute exploits only after verifying the target and preconditions.",
+    "Record every attempt into real_experiments/results/real_experiments_execution_log.json."
+  ],
+  "hosts": [
+    {
+      "id": "edge01",
+      "ip": "10.30.0.10",
+      "role": "edge-web",
+      "services": [
+        "http"
+      ],
+      "vulnerabilities": [
+        "family_2"
+      ],
+      "expected_backend": [
+        "custom_or_external"
+      ]
+    },
+    {
+      "id": "gate01",
+      "ip": "10.30.0.20",
+      "role": "pivot-gateway",
+      "services": [
+        "rdp",
+        "winrm"
+      ],
+      "vulnerabilities": [
+        "family_1"
+      ],
+      "expected_backend": [
+        "metasploit"
+      ]
+    },
+    {
+      "id": "erp01",
+      "ip": "10.30.1.10",
+      "role": "erp",
+      "services": [
+        "http",
+        "mssql"
+      ],
+      "vulnerabilities": [
+        "family_0"
+      ],
+      "expected_backend": [
+        "metasploit"
+      ]
+    },
+    {
+      "id": "ops01",
+      "ip": "10.30.1.20",
+      "role": "ops",
+      "services": [
+        "ssh"
+      ],
+      "vulnerabilities": [
+        "family_3"
+      ],
+      "expected_backend": [
+        "custom_or_external"
+      ]
+    },
+    {
+      "id": "backup01",
+      "ip": "10.30.2.10",
+      "role": "backup",
+      "services": [
+        "ssh",
+        "nfs"
+      ],
+      "vulnerabilities": [
+        "family_1"
+      ],
+      "expected_backend": [
+        "metasploit"
+      ]
+    },
+    {
+      "id": "crown02",
+      "ip": "10.30.2.20",
+      "role": "crown-jewel",
+      "services": [
+        "smb"
+      ],
+      "vulnerabilities": [
+        "family_2"
+      ],
+      "expected_backend": [
+        "custom_or_external"
+      ]
+    }
+  ],
+  "reachability_rules": [
+    {
+      "from_subnet": "dmz",
+      "to_subnet": "internal",
+      "condition": "compromise_host(gate01)"
+    },
+    {
+      "from_subnet": "internal",
+      "to_subnet": "core",
+      "condition": "compromise_host(ops01)"
+    }
+  ],
+  "notes": "Preparation artifact only. No live exploitation performed by this script."
+}

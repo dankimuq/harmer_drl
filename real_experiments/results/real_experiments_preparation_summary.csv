@@ -1,0 +1,5 @@
+experiment_name,subnets,hosts,goal_host,reachability_rules,has_decoy
+real_experiments_network_alpha,3,6,crown01,2,0
+real_experiments_network_beta,3,6,crown02,2,0
+real_experiments_network_delta,4,6,crown04,4,1
+real_experiments_network_gamma,3,6,crown03,2,0

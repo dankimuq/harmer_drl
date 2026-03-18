@@ -1,0 +1,121 @@
+{
+  "experiment_name": "real_experiments_network_delta",
+  "network_key": "delta",
+  "mode": "live",
+  "started_at": "2026-03-18T06:33:04.230107+00:00",
+  "finished_at": "2026-03-18T06:33:33.824098+00:00",
+  "target_host": "crown04",
+  "lab_target_ip": "10.5.0.10",
+  "targets": [
+    "10.50.0.10",
+    "10.50.0.30",
+    "10.50.1.10",
+    "10.50.2.10",
+    "10.50.3.10",
+    "10.50.3.20"
+  ],
+  "runbook_scope": {
+    "attacker_entry_subnet": "dmz",
+    "goal": {
+      "target_host": "crown04",
+      "objective": "obtain_session"
+    }
+  },
+  "exploit_chain": [
+    "multi/samba/usermap_script",
+    "unix/ftp/vsftpd_234_backdoor",
+    "unix/misc/distcc_exec"
+  ],
+  "stages": [
+    {
+      "experiment_name": "real_experiments_network_delta",
+      "target_host": "crown04",
+      "execution_stage": "preflight",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "Config and runbook validated",
+      "timestamp": "2026-03-18T06:33:04.230107+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_delta",
+      "target_host": "crown04",
+      "execution_stage": "docker_connect",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "MSF RPC port 55552 is open",
+      "timestamp": "2026-03-18T06:33:04.230844+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_delta",
+      "target_host": "crown04",
+      "execution_stage": "metasploit_rpc",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "Connected to Metasploit 6.4.0-dev",
+      "timestamp": "2026-03-18T06:33:04.244941+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_delta",
+      "target_host": "crown04",
+      "execution_stage": "service_fingerprinting",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "TCP portscan ports=21,22,3632,445,80 against 10.5.0.10: job 14",
+      "timestamp": "2026-03-18T06:33:04.258625+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_delta",
+      "target_host": "crown04",
+      "execution_stage": "exploit_execution",
+      "status": "failed",
+      "session_opened": "false",
+      "notes": "[primary] multi/samba/usermap_script error: Invalid payload (cmd/unix/reverse_bash) for given target (0).",
+      "timestamp": "2026-03-18T06:33:09.375965+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_delta",
+      "target_host": "crown04",
+      "execution_stage": "exploit_execution",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "[fallback-1] unix/ftp/vsftpd_234_backdoor rport=21 launched, job=15",
+      "timestamp": "2026-03-18T06:33:09.434406+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_delta",
+      "target_host": "crown04",
+      "execution_stage": "exploit_execution",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "[fallback-2] unix/misc/distcc_exec rport=3632 launched, job=16",
+      "timestamp": "2026-03-18T06:33:29.769009+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_delta",
+      "target_host": "crown04",
+      "execution_stage": "payload_delivery",
+      "status": "ok",
+      "session_opened": "false",
+      "notes": "cmd/unix/interact payload delivered with exploit module",
+      "timestamp": "2026-03-18T06:33:30.783564+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_delta",
+      "target_host": "crown04",
+      "execution_stage": "session_acquisition",
+      "status": "ok",
+      "session_opened": "true",
+      "notes": "Session 5 opened on 10.5.0.10",
+      "timestamp": "2026-03-18T06:33:30.789934+00:00"
+    },
+    {
+      "experiment_name": "real_experiments_network_delta",
+      "target_host": "crown04",
+      "execution_stage": "lateral_movement",
+      "status": "ok",
+      "session_opened": "true",
+      "notes": "Shell confirmed: ",
+      "timestamp": "2026-03-18T06:33:33.815984+00:00"
+    }
+  ]
+}

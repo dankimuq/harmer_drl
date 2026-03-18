@@ -1,0 +1,42 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+rope = "*"
+jedi = "*"
+flake8 = "*"
+autopep8 = "*"
+yapf = "*"
+pylint = "*"
+importmagic = "*"
+epc = "*"
+ipython = "*"
+hy = "*"
+python-language-server = "*"
+graphviz = "*"
+autoflake = "*"
+
+[packages]
+pymetasploit3 = "*"
+pyattck = "*"
+stix2 = "*"
+pexpect = "*"
+pycrypto = "*"
+requests = "*"
+pefile = "*"
+netifaces = "*"
+python-nmap = "*"
+scapy = "*"
+matplotlib = "*"
+python-gvm = "*"
+vulners = "*"
+msgpack="==0.6.2"
+paramiko = "*"
+scp = "*"
+pyyaml = "*"
+boto3 = "*"
+
+[requires]
+python_version = "3.7"

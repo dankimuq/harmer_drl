@@ -1,0 +1,125 @@
+{
+  "experiment_name": "real_experiments_network_delta",
+  "scope": {
+    "attacker_entry_subnet": "dmz",
+    "goal": {
+      "target_host": "crown04",
+      "objective": "obtain_session"
+    }
+  },
+  "ordered_preparation_steps": [
+    "Confirm Docker lab topology exists and hosts are reachable from the attacker container.",
+    "Validate Metasploit RPC connectivity and workspace creation.",
+    "Run safe service fingerprinting only within approved scope.",
+    "Map discovered services to capability families or custom exploit backends.",
+    "Execute exploits only after verifying the target and preconditions.",
+    "Record every attempt into real_experiments/results/real_experiments_execution_log.json."
+  ],
+  "hosts": [
+    {
+      "id": "portal01",
+      "ip": "10.50.0.10",
+      "role": "public-portal",
+      "services": [
+        "http"
+      ],
+      "vulnerabilities": [
+        "family_1"
+      ],
+      "expected_backend": [
+        "metasploit"
+      ]
+    },
+    {
+      "id": "decoy01",
+      "ip": "10.50.0.30",
+      "role": "decoy",
+      "services": [
+        "http"
+      ],
+      "vulnerabilities": [],
+      "expected_backend": []
+    },
+    {
+      "id": "brancha01",
+      "ip": "10.50.1.10",
+      "role": "branch-a-app",
+      "services": [
+        "winrm",
+        "http"
+      ],
+      "vulnerabilities": [
+        "family_0"
+      ],
+      "expected_backend": [
+        "metasploit"
+      ]
+    },
+    {
+      "id": "branchb01",
+      "ip": "10.50.2.10",
+      "role": "branch-b-app",
+      "services": [
+        "ssh"
+      ],
+      "vulnerabilities": [
+        "family_3"
+      ],
+      "expected_backend": [
+        "custom_or_external"
+      ]
+    },
+    {
+      "id": "hub01",
+      "ip": "10.50.3.10",
+      "role": "hub-control",
+      "services": [
+        "rdp",
+        "smb"
+      ],
+      "vulnerabilities": [
+        "family_2"
+      ],
+      "expected_backend": [
+        "custom_or_external"
+      ]
+    },
+    {
+      "id": "crown04",
+      "ip": "10.50.3.20",
+      "role": "crown-jewel-db",
+      "services": [
+        "mssql"
+      ],
+      "vulnerabilities": [
+        "family_1"
+      ],
+      "expected_backend": [
+        "metasploit"
+      ]
+    }
+  ],
+  "reachability_rules": [
+    {
+      "from_subnet": "dmz",
+      "to_subnet": "branch-a",
+      "condition": "compromise_host(portal01)"
+    },
+    {
+      "from_subnet": "dmz",
+      "to_subnet": "branch-b",
+      "condition": "compromise_host(portal01)"
+    },
+    {
+      "from_subnet": "branch-a",
+      "to_subnet": "core",
+      "condition": "compromise_any(branch-a)"
+    },
+    {
+      "from_subnet": "branch-b",
+      "to_subnet": "core",
+      "condition": "compromise_any(branch-b)"
+    }
+  ],
+  "notes": "Preparation artifact only. No live exploitation performed by this script."
+}

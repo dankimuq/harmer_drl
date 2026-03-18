@@ -1,0 +1,15 @@
+name,sr,mr,std,ms,note
+Random,43.333333333333336,-81.66666666666667,151.9191853877873,37.07692307692308,baseline
+Deterministic HARMer,100.0,247.0,0.0,6.0,original
+Q-Learning (orig env),100.0,247.0,0.0,6.0,original env
+Q-Learning (fixed env),100.0,247.0,0.0,6.0,fixed env
+PPO (orig env),100.0,247.0,0.0,6.0,original env
+A2C (orig env),100.0,247.0,0.0,6.0,original env
+DQN (orig) (orig env),0.0,114.0,0.0,nan,original env
+DDQN (orig) (orig env),0.0,98.0,0.0,nan,original env
+DQN (fixed env),100.0,250.0,0.0,8.0,scan-idempotency fix
+DDQN (fixed env),100.0,254.5,0.0,11.0,scan-idempotency fix
+PPO (fixed env),100.0,247.0,0.0,6.0,zero-shot transfer
+A2C (fixed env),100.0,247.0,0.0,6.0,zero-shot transfer
+A3C-like/SB3 (orig env),100.0,218.5,0.0,3.0,A2C surrogate
+"A3C (PyTorch async, fixed env)",100.0,218.5,0.0,3.0,"async, grad accum fix"

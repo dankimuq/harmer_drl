@@ -1,0 +1,12 @@
+Algorithm,SR%,MeanReward,StdReward,AvgSteps
+Random,43.3,-81.67,151.92,37.1
+Deterministic HARMer,100.0,247.00,0.00,6.0
+Q-Learning (orig env),100.0,247.00,0.00,6.0
+PPO (orig env),100.0,247.00,0.00,6.0
+A2C (orig env),100.0,247.00,0.00,6.0
+DQN (orig) (orig env),0.0,114.00,0.00,
+DDQN (orig) (orig env),0.0,98.00,0.00,
+DQN (fixed env),100.0,250.00,0.00,8.0
+DDQN (fixed env),100.0,254.50,0.00,11.0
+A3C-like/SB3 (orig env),100.0,218.50,0.00,3.0
+"A3C (PyTorch async, fixed env)",100.0,218.50,0.00,3.0

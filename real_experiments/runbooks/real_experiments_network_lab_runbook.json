@@ -1,0 +1,28 @@
+{
+  "experiment_name": "real_experiments_network_lab",
+  "scope": {
+    "attacker_entry_subnet": "docker_pentest_net",
+    "goal": {
+      "target_host": "target_vuln_1",
+      "objective": "obtain_session"
+    }
+  },
+  "ordered_preparation_steps": [
+    "Confirm Docker lab is running: docker compose up -d",
+    "Validate MSF RPC connectivity: 127.0.0.1:55552 (user=msf, pass=test)",
+    "Run TCP portscan against 10.5.0.10 (ports 21,22,80,445)",
+    "Execute vsftpd_234_backdoor exploit against port 21",
+    "Check for open session and run id command to confirm shell",
+    "Record all stage results into real_experiments/results/"
+  ],
+  "hosts": [
+    {
+      "id": "target_vuln_1",
+      "ip": "10.5.0.10",
+      "role": "lab-target",
+      "services": ["ftp", "ssh", "http", "samba"],
+      "vulnerabilities": ["vsftpd_234_backdoor", "usermap_script"],
+      "expected_backend": ["metasploit"]
+    }
+  ]
+}

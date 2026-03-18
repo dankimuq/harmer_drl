@@ -1,0 +1,17 @@
+{
+  "approach": "real_experiment::real_experiments_network_alpha",
+  "targets": [
+    "10.20.0.10",
+    "10.20.0.20",
+    "10.20.1.10",
+    "10.20.1.20",
+    "10.20.2.10",
+    "10.20.2.20"
+  ],
+  "path-file": "real_experiments/runbooks/real_experiments_network_alpha_attack_paths.txt",
+  "metadata": {
+    "goal_host": "crown01",
+    "goal_objective": "obtain_session",
+    "description": "DMZ to internal to crown-jewel path with one Linux and one Windows branch."
+  }
+}

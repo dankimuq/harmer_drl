@@ -1,0 +1,17 @@
+{
+  "approach": "real_experiment::real_experiments_network_gamma",
+  "targets": [
+    "10.40.0.10",
+    "10.40.0.20",
+    "10.40.1.10",
+    "10.40.1.20",
+    "10.40.2.10",
+    "10.40.2.20"
+  ],
+  "path-file": "real_experiments/runbooks/real_experiments_network_gamma_attack_paths.txt",
+  "metadata": {
+    "goal_host": "crown03",
+    "goal_objective": "obtain_session",
+    "description": "Dual-control internal zone where two hosts must be compromised before core access."
+  }
+}
